@@ -1,0 +1,38 @@
+name: Grammar Lecture 24/7 Stream
+
+on:
+  schedule:
+    - cron: '10 */6 * * *'   # 00:10, 06:10, 12:10, 18:10 UTC
+  workflow_dispatch: {}
+
+concurrency:
+  group: grammar-lecture-stream
+  cancel-in-progress: true
+
+jobs:
+  stream:
+    runs-on: ubuntu-latest
+    timeout-minutes: 355
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Ensure ffmpeg is installed
+        run: |
+          if ! command -v ffmpeg >/dev/null 2>&1; then
+            sudo apt-get update -y
+            sudo apt-get install -y ffmpeg
+          fi
+
+      - name: Stream loop to YouTube
+        env:
+          YT_STREAM_KEY: ${{ secrets.YT_STREAM_KEY_GRAMMAR }}
+          VIDEO_PATH: videos/grammar-lecture/loop.mp4
+          JOB_BUDGET_SECONDS: '21000'
+        run: |
+          if [ -z "$YT_STREAM_KEY" ]; then
+            echo "::error::YT_STREAM_KEY_GRAMMAR secret is not set."
+            exit 1
+          fi
+          chmod +x scripts/stream-loop.sh
+          scripts/stream-loop.sh
