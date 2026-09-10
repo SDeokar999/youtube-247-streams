@@ -1,11 +1,11 @@
 # YouTube 24/7 Streams
 
-Four independent 24/7 YouTube loop streams, consolidated into one repo.
+Five independent 24/7 YouTube loop streams, consolidated into one repo.
 Each is its own GitHub Actions workflow — separate video, separate stream
 key, separate cron schedule (staggered 5 minutes apart so they don't hit
 GitHub's scheduler at the same instant) — so they run concurrently without
-interfering with each other. Migrated from 4 separate repos
-(`youtube-247-loop-stream`, `ganesh-pancharatnam-loop`,
+interfering with each other. The first 4 were migrated from 4 separate
+repos (`youtube-247-loop-stream`, `ganesh-pancharatnam-loop`,
 `grammar-lecture-loop-stream`, `hanuman-chalisa-loop-stream`), which this
 replaces.
 
@@ -14,7 +14,8 @@ replaces.
 | Marathi poem lecture | `marathi-lecture.yml` | `videos/marathi-lecture/loop.mp4` | `YT_STREAM_KEY_MARATHI` |
 | Ganesh Pancharatnam | `ganesh-pancharatnam.yml` | `videos/ganesh-pancharatnam/loop.mp4` | `YT_STREAM_KEY_GANESH` |
 | Grammar lecture | `grammar-lecture.yml` | `videos/grammar-lecture/loop.mp4` | `YT_STREAM_KEY_GRAMMAR` |
-| Hanuman Chalisa | `hanuman-chalisa.yml` | `videos/hanuman-chalisa/loop.mp4` | `YT_STREAM_KEY_HANUMAN` |
+| Hanuman Chalisa (AI song) | `hanuman-chalisa.yml` | `videos/hanuman-chalisa/loop.mp4` | `YT_STREAM_KEY_HANUMAN` |
+| Hanuman Chalisa (recording) | `hanuman-chalisa-recording.yml` | `videos/hanuman-chalisa-recording/loop.mp4` | `YT_STREAM_KEY_HANUMAN_RECORDING` |
 
 All four share `scripts/stream-loop.sh` (loops the video into YouTube RTMP,
 auto-restarting ffmpeg on any drop) — each workflow just points it at a
