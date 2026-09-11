@@ -29,7 +29,6 @@ jobs:
           YT_STREAM_KEY: ${{ secrets.YT_STREAM_KEY_GANESH }}
           VIDEO_DIR: videos/ganesh-pancharatnam
           JOB_BUDGET_SECONDS: '21000'
-          BLOCK_SECONDS: '60'   # TEST value — bump to 3600 (1hr) once confirmed working
         run: |
           if [ -z "$YT_STREAM_KEY" ]; then
             echo "::error::YT_STREAM_KEY_GANESH secret is not set."
