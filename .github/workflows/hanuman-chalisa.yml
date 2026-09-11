@@ -27,7 +27,7 @@ jobs:
       - name: Stream loop to YouTube
         env:
           YT_STREAM_KEY: ${{ secrets.YT_STREAM_KEY_HANUMAN }}
-          VIDEO_PATH: videos/hanuman-chalisa/loop.mp4
+          VIDEO_DIR: videos/hanuman-chalisa
           JOB_BUDGET_SECONDS: '21000'
         run: |
           if [ -z "$YT_STREAM_KEY" ]; then
